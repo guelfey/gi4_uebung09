@@ -43,3 +43,15 @@ Adressen:
 | msg    | 80480553 |
 | schleife | 804804F4 |
 | ende   | 80480523 |
+
+## Eine Objektdatei
+
+Eine Möglichkeit, um nur noch eine Objektdatei für das Programm zu benötigen,
+wäre libc als dynamische Bibliothek zu benutzen. Dann wäre dieses Modul als
+dynamische Bibliothek auf der Festplatte und der Lader würde beim Laden des
+Programm sicher stellen, dass libc ebenfalls geladen ist. Dann müssten
+Referenzen von Symbolen aus libc von cntdwn aus vom Lader ersetzt werden, denn
+zur Zeit des Kompilierens bzw. Linkens wären die Adressen noch nicht bekannt.
+Die Objektdatei ctndwn.o wäre im Prinzip vom Aufbau gleich, nur dass noch
+Informationen über zur Ladezeit zu modifizierende Symbole hinzugefügt werden
+müssten. Diese müssten dann auch in die ausführbare Datei übernommen werden.
